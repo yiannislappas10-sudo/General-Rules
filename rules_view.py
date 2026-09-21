@@ -232,8 +232,8 @@ class RulesView(ui.LayoutView):
         container.add_item(ui.Separator())
 
         container.add_item(ui.TextDisplay(
-            'Click **"Select the rule"** to read the rules. They\'re important too.\n'
-            'If it gives error **"This interaction failed"** try again.'
+            'Click to select the category of rules you want to view — they are all important.\n'
+            'If you get **"This interaction failed"**, try again or message Saintless.'
         ))
         container.add_item(ui.ActionRow(RuleSelect()))
 
