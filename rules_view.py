@@ -177,9 +177,10 @@ POINT_INFO = (
 PUNISHMENT_TABLE = (
     "**Minor rule break** — 1 pt → Verbal warning\n"
     "**Repeated minor breaks** — 2 pts → Written warning\n"
-    "**Moderate offense** — 3 pts → 24h suspension\n"
-    "**Serious offense** — 5 pts → 7-day suspension / demotion\n"
-    "**6+ points total** → Removal from Security\n"
+    "**Moderate offense** — 3 pts → 24-hour timeout\n"
+    "**Serious offense** — 5 pts → 7-day timeout\n"
+    "**6+ points total** → 7-day ban\n"
+    "**Extreme offense** → Immediate ban\n"
     "**Ban evasion / repeat ban** → **Permanent ban, no excuse**"
 )
 

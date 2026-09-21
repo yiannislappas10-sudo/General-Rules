@@ -11,3 +11,7 @@ A Discord bot that publishes the community, in-game, and economy rules through a
 5. Give it permission to view/send messages and use application commands in the target channel.
 
 The service starts with `python bot.py`.
+
+## Runtime error alerts
+
+Set `ALERT_USER_ID` to the Discord user ID that should receive one DM after the bot records more than five runtime errors in one process run. It defaults to `1441030741998702592`.
