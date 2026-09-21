@@ -28,6 +28,8 @@ async def rules(interaction: discord.Interaction):
 
 @bot.event
 async def setup_hook():
+    # Reconnect callbacks for rules messages created before a bot restart.
+    bot.add_view(RulesView())
     if GUILD_ID:
         guild = discord.Object(id=int(GUILD_ID))
         bot.tree.copy_global_to(guild=guild)

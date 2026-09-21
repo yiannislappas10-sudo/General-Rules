@@ -205,6 +205,7 @@ class RuleSelect(ui.Select):
     def __init__(self):
         super().__init__(
             placeholder="Select the rule",
+            custom_id="rules_category",
             options=[
                 discord.SelectOption(label="In-Game Rules", value="ingame", emoji="🎮"),
                 discord.SelectOption(label="Discord Rules", value="discord", emoji="💬"),
@@ -222,7 +223,9 @@ class RuleSelect(ui.Select):
 
 class RulesView(ui.LayoutView):
     def __init__(self):
-        super().__init__()
+        # Keep the public rules panel usable after the initial three-minute
+        # interaction window and across bot restarts.
+        super().__init__(timeout=None)
         container = ui.Container(accent_color=discord.Colour.dark_theme())
 
         container.add_item(ui.TextDisplay("# Project Heaven — Rules"))
