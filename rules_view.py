@@ -2,10 +2,17 @@ import discord
 from discord import ui
 
 # ─────────────────────────────────────────────────────────────
-# RULE TEXT — edit these freely
+# COMBINED RULES
+#
+# This bot is now the single rules bot for:
+#   1. General
+#   2. Security
+#   3. Research
+#   4. Technical
+#   5. Janitor
 # ─────────────────────────────────────────────────────────────
 
-DISCORD_RULES = """꧁ 𓆩✰༺☾ COMMUNITY STANDARDS ☽༻✰𓆪꧂
+GENERAL_RULES = """꧁ 𓆩✰༺☾ GENERAL RULES ☽༻✰𓆪꧂
 
 **I. Explicit & Graphic Content**
 Points won't be removed even if you're unbanned. To comply with Discord's Community Guidelines, explicit or graphic content is strictly prohibited.
@@ -68,103 +75,198 @@ Keep conflicts out of public spaces.
 • Personal conflicts, callouts, or disputes must be taken to DMs or a support ticket, not aired in public channels → Warning
 • Stirring drama or baiting others into public arguments → Warning / Temporary Mute"""
 
-INGAME_RULES = """**§ ROBLOX GAME RULES §**
-*Please read carefully before playing*
-━━━━━━━━━━━━━━━━━━
+SECURITY_RULES = """**SECURITY RULES**
 
-**I. Roblox Compliance**
-All Roblox Terms of Service and Community Standards apply at all times.
-• Violating Roblox ToS/Community Standards → Warning / Ban (severity-based)
+**1. WEAPON DISCIPLINE**
+• Do not fire without a valid threat.
+• No unnecessary firing or mag-dumping.
+• Do not shoot personnel because of suspicion alone.
+• Do not fire into crowds or populated areas recklessly.
+• Keep your weapon under control at all times.
 
-**II. No Exploiting**
-Abusing bugs, glitches, or exploits for personal gain results in severe penalties, including permanent bans.
-• Minor exploit for personal convenience → Temporary Ban
-• Exploiting for unfair advantage or to harm others' experience → Permanent Ban
+**2. IDENTIFICATION**
+• Know who you are dealing with before taking action.
+• Do not attack someone simply because they are unfamiliar.
+• Ask questions and verify their authorization when appropriate.
+• If you are unsure, get a superior rather than immediately escalating.
 
-**III. Content Standards**
-No suggestive, inappropriate, or controversial content — this includes usernames, outfits, builds, and chat.
-• First offense → Warning + forced change
-• Repeated offense → Temporary to Permanent Ban
+**3. POST DISCIPLINE**
+• Stay at your assigned position unless given permission to leave.
+• Do not abandon your post during minor incidents.
+• Do not wander around the facility looking for trouble.
+• Remain attentive while stationed.
 
-**IV. No Trolling**
-Deliberately disrupting roleplay, baiting reactions, or ruining others' experience for "fun" is forbidden.
-• Warning / Temporary Mute, escalating to Ban for repeat offenders
+**4. AUTHORITY**
+• Follow orders from authorized superiors.
+• Do not give orders beyond your rank.
+• Do not threaten or intimidate personnel because you have a weapon.
+• Security authority must never be used for personal arguments.
 
-**V. Respect & Conduct**
-No harassment, stalking, discrimination, hate speech, or personal attacks. Treat others the way you'd want to be treated.
-• Harassment/personal attacks → Warning / Temporary Ban
-• Discrimination or hate speech → Permanent & Non-Appealable Ban
+**5. RESTRICTED AREAS**
+• Do not allow unauthorized personnel into restricted areas.
+• Do not enter restricted zones without proper authorization.
+• Do not give other players access to areas they are not cleared for.
 
-**VI. Fair Roleplay**
-The following are considered Fail RP and are **not allowed**:
-› **Meta Grudging** — Letting OOC conflict affect IC treatment of a player
-› **Meta Gaming** — Using OOC knowledge your character has no way of knowing IC
-› **God Modding** — Giving your character unfair/unbeatable traits, or controlling another player's character without consent
-› **Combat Logging** — Leaving mid-conflict to dodge consequences
-› **Power Gaming** — Forcing actions onto another player without giving them a chance to respond
-• Any Fail RP violation → Warning, escalating to Temporary Ban for repeat offenders
+**6. INCIDENTS**
+• Stay calm during emergencies.
+• Protect nearby personnel and secure the area.
+• Do not make an incident worse through reckless behavior.
+• Report serious incidents to the appropriate superior.
 
-**VII. No Advertising**
-Do not advertise other games, Discord servers, or social media without staff permission.
-• First offense → Warning + message removed
-• Repeated advertising → Temporary Ban
+**7. PROFESSIONAL CONDUCT**
+• No harassment, bullying, or unnecessary aggression.
+• Do not randomly detain or attack people.
+• Do not start conflicts while on duty.
+• Remain professional even when other personnel are being difficult.
 
-**VIII. Staff Authority**
-Staff decisions are final during active situations. Disputes go through proper channels (ticket/DM), not public arguments.
-• Arguing publicly with staff → Warning / Temporary Mute
+**8. ROLEPLAY DISCIPLINE**
+• Do not use OOC information for IC decisions.
+• Do not randomly kill players for entertainment.
+• Follow the facility's RP rules.
+• Keep your actions appropriate to your character's position.
 
-**IX. Age-Appropriate Themes**
-Dark or mature myth themes (death, sacrifice, war, etc.) are allowed but must stay symbolic/non-graphic — no gore, excessive violence, or disturbing detail.
-• Warning + content removal, escalating to Temporary Ban for repeat offenders
+**9. EQUIPMENT**
+• Do not misuse security equipment.
+• Do not take another officer's equipment without permission.
+• Report missing or damaged equipment to a superior.
 
-**X. One Character Rule**
-Players may only control one primary character at a time unless given permission for NPCs.
-• Warning + character correction
+**10. ACCOUNTABILITY**
+• Mistakes must be reported instead of hidden.
+• Repeated violations will result in disciplinary action.
+• Severe misconduct may result in immediate suspension or removal from Security."""
 
-**XI. Consent for Major Actions**
-Killing, kidnapping, or permanently altering another player's character requires their OOC consent first. This also covers drawing someone's OC or using them in animations/RP — ask first.
-• Acting without consent → Warning, escalating to Temporary Ban for repeat offenders
+RESEARCH_RULES = """**RESEARCH RULES**
 
-**XII. Perma-Death Consent**
-A character can only be permanently killed off with the player's explicit OOC agreement beforehand. No surprise perma-kills.
-• Forcing a perma-kill without consent → Warning / Temporary Ban + action reversed
+**1. DON'T HARM ANYONE**
+• Don't harm anyone in or out this division.
 
-**XIII. Lore Consistency**
-Players may not retcon or contradict established server lore to fit their own character or story — check with staff before introducing major lore changes.
-• Warning + retcon reversed, escalating to Temporary Ban for repeat offenders"""
+**2. STAY IN YOUR LANE**
+• Do your business as a researcher (regardless of high or low rank).
+• Each rank is provided their own place and business.
 
-ECONOMY_RULES = """**Economy (Envy) Rules**
+**3. NO HARM DURING ROLEPLAY**
+• During roleplay, do NOT murder, harm, assault, make uncomfortable, or guilt trip anyone.
+• You're a researcher — not another division with their own tasks and goals.
+• Our goal is to find artifacts and discover each specimen.
 
-**I. No Real-Money Trading**
-Envy or in-game items may not be bought, sold, or traded for real money or real-world goods.
-• Exception: rewards given directly by an admin (e.g. Nitro, giveaway prizes) are allowed.
-• Any player found RMT-ing → Permanent Ban + trade reversal
+**4. BE HUMBLE & KIND**
+• Be humble and kind to others, avoid assaults and harmful things.
+• Do not pick violence against other division personnel.
 
-**II. No Exploiting**
-Using bugs, glitches, or loopholes to duplicate currency or items, or to gain an unfair economic advantage → Permanent Ban + full point/currency wipe
+**5. PINNING MESSAGES**
+• Only the High Curator pins messages that are important and need to be seen by other high-ups, including this division (Research Division).
 
-**III. No Fake Listings**
-Creating fake, misleading, or bait listings in the marketplace (including listings for items you don't actually have) → Warning / Temporary Ban + listing removed
+**6. CARE FOR ONE ANOTHER**
+• Care for one another, high or low rank, in each division.
+• Do not harm or be rude to them — be cautious about what you've done.
+• Hesitate before doing something next — think about whether it's right or wrong.
 
-**IV. Listings Must Go Through the Official System**
-All trades and sales must be done through the proper listing/market command — no exceptions, no off-book side deals. Off-book trades are not covered by refund/support if something goes wrong.
+**7. EVIDENCE IS KEPT**
+• There are records that will be used to hold you accountable for any assaults you've committed.
 
-**V. No Price Manipulation**
-Colluding with alt accounts or other players to manipulate prices, or scalping listings to exploit new/inactive players → Warning / Temporary Ban
+**8. YOU'RE BEING WATCHED**
+• Not only the High Curator is watching — other higher-ups watch this division's actions toward one another too.
 
-**VI. No Currency Farming via Alts**
-Using alternate accounts to farm Envy, exploit daily/work rewards, or manipulate the market → Permanent Ban (All Accounts)
+**9. SUSPENSION FOR HARM**
+• Suspension and imprisonment are given directly if you have assaulted or harmed any personnel.
+• Begging for mercy will not help.
 
-**VII. Scam Trades**
-Deliberately scamming another player in a trade (not delivering after payment, swapping listed items, etc.) → Permanent Ban + trade reversed where possible
+**10. NO FAKE FRIENDLINESS**
+• No assumptions, no showing fake friendliness toward others, no using rank as leverage over your name.
+• Direct mute or suspension with no hesitation.
 
-**VIII. Admin Discretion on Disputes**
-Staff reserve the right to reverse, freeze, or cancel any trade/listing suspected of fraud, exploitation, or rule-breaking, even without a formal report."""
+**11. DON'T ANNOY HIGH-UPS**
+• Don't even think about annoying the High Curator or other high-ups while they're minding their own business.
+• They will mark you for suspension."""
+
+TECHNICAL_RULES = """**TECHNICAL RULES**
+
+**1. NO BLAMING OR FRAMING**
+• No one will act badly towards others, especially blaming people or framing them.
+
+**2. ACT RESPONSIBLY**
+• If you encounter a problem, act accordingly and responsibly.
+
+**3. REACH OUT IF YOU'RE HURTING**
+• If you feel hurt or sad and someone is being mean to you, don't worry — you may reach out to me or others.
+
+**4. NO ATTACKING OR HARASSING**
+• No attacking people, and no insulting or harassing them.
+• Serious consequences follow for anyone who does.
+
+**5. REPRESENT THE DIVISION WELL**
+• No acting like a kid — do not embarrass our Technical name, or me.
+
+**6. STAY SERIOUS IN-GAME**
+• Act serious in-game. You can be OOC with people you know, and have some fun — just don't take it too far.
+
+**7. DON'T ASK FOR SPECIAL PERMISSION**
+• Do not ask for special permission. If you do, I will gladly take this to the higher-ups.
+
+**8. RESPECT THE HIGHER-UPS**
+• Do not mess with the higher-ups. If you have a problem, DM me — but only for important matters.
+
+**9. NO METAGAMING / META-GRUDGING**
+• Don't metagame or meta-grudge. Learn the proper rules on how to roleplay."""
+
+JANITOR_RULES = """**JANITOR RULES**
+
+**1. ONLY 2 CHANCES**
+• You are required to follow the rules strictly — you only get 2 chances if you break them.
+• If you break all of them, you will be suspended.
+
+**2. NO MURDER / ASSAULT**
+• Don't even think about murdering or assaulting anyone to cause harm, or playing the victim.
+• Doing so puts you at high risk of suspension.
+
+**3. EVIDENCE IS KEPT**
+• The higher-ups have records and evidence coming from you (low or high rank) to prove you guilty of any charges.
+
+**4. DON'T START FIGHTS**
+• Yes, janitors can be dangerous — that doesn't mean you can act like one just to harm others.
+• Don't assume you can pick a fight on them — if someone sees you fighting with other personnel, both of you will be reported directly.
+
+**5. ACT YOUR AGE**
+• Choose peace and humility instead. Don't act like a kid in front of every player when your character is 18+ and should act like it.
+
+**6. NO ANNOYING OTHER DIVISIONS**
+• Don't choose annoyance or anything else against other division personnel.
+• The higher-ups are reading your messages and can see the evidence of what, where, and when it happened.
+
+**7. NO FIGHTS, NO VIOLENCE**
+• NO picking fights, NO violence, NO harming or annoying other personnel in or out of the division.
+• NO giving unexpected reports until the limit is already 10+.
+• NO disturbing the higher-ups unless it's actually important.
+
+**8. HIGHER-UPS CAN REACH OUT**
+• The higher-ups can read or directly message the division at any time if they see you doing something that isn't clearly right.
+
+**9. THE LIMIT IS 2 — NO EXCEPTIONS**
+• You only get 2 chances. No assumptions, no changing that number.
+• If you broke them, there's no sympathy for the path you chose.
+
+**10. MIND YOUR OWN BUSINESS**
+• All personnel in this division must strictly mind their own business and follow the goals they were given.
+• No violence-driven goals, ever.
+
+**11. REPORT, DON'T ENGAGE**
+• Resume your own business — do not engage in a fight for someone else's sake.
+• Report directly to the Head Janitor instead."""
 
 RULES = {
-    "ingame": INGAME_RULES,
-    "discord": DISCORD_RULES,
-    "economy": ECONOMY_RULES,
+    "general": GENERAL_RULES,
+    "security": SECURITY_RULES,
+    "research": RESEARCH_RULES,
+    "technical": TECHNICAL_RULES,
+    "janitor": JANITOR_RULES,
+}
+
+TITLES = {
+    "general": "General Rules",
+    "security": "Security Rules",
+    "research": "Research Rules",
+    "technical": "Technical Rules",
+    "janitor": "Janitor Rules",
 }
 
 POINT_INFO = (
@@ -185,13 +287,8 @@ PUNISHMENT_TABLE = (
 )
 
 
-# ─────────────────────────────────────────────────────────────
-# UI COMPONENTS
-# ─────────────────────────────────────────────────────────────
-
 def build_reply(title: str, body: str, color: discord.Colour = discord.Colour.dark_theme()) -> ui.LayoutView:
-    """Wraps any block of rule text in a styled Components V2 container
-    so ephemeral replies look like the main panel instead of a plain text dump."""
+    """Build a private Components V2 response for a selected rules category."""
     view = ui.LayoutView()
     container = ui.Container(accent_color=color)
     container.add_item(ui.TextDisplay(f"# {title}"))
@@ -204,75 +301,97 @@ def build_reply(title: str, body: str, color: discord.Colour = discord.Colour.da
 class RuleSelect(ui.Select):
     def __init__(self):
         super().__init__(
-            placeholder="Select the rule",
+            placeholder="Select the rules",
             custom_id="rules_category",
             options=[
-                discord.SelectOption(label="In-Game Rules", value="ingame", emoji="🎮"),
-                discord.SelectOption(label="Discord Rules", value="discord", emoji="💬"),
-                discord.SelectOption(label="Economy Rules", value="economy", emoji="💰"),
+                discord.SelectOption(label="General Rules", value="general"),
+                discord.SelectOption(label="Security Rules", value="security"),
+                discord.SelectOption(label="Research Rules", value="research"),
+                discord.SelectOption(label="Technical Rules", value="technical"),
+                discord.SelectOption(label="Janitor Rules", value="janitor"),
             ],
         )
 
     async def callback(self, interaction: discord.Interaction):
         key = self.values[0]
-        titles = {"ingame": "In-Game Rules", "discord": "Community Standards", "economy": "Economy (Envy) Rules"}
-        view = build_reply(titles[key], RULES[key])
-        # Only the person who clicked sees this — ephemeral=True
-        await interaction.response.send_message(view=view, ephemeral=True)
+        await interaction.response.send_message(
+            view=build_reply(TITLES[key], RULES[key]),
+            ephemeral=True,
+        )
 
 
 class RulesView(ui.LayoutView):
     def __init__(self):
-        # Keep the public rules panel usable after the initial three-minute
-        # interaction window and across bot restarts.
         super().__init__(timeout=None)
+
         container = ui.Container(accent_color=discord.Colour.dark_theme())
-
         container.add_item(ui.TextDisplay("# Project Heaven — Rules"))
-        container.add_item(ui.TextDisplay(
-            "And most important thing, you must follow [Discord's Terms of Service](https://discord.com/terms)"
-        ))
+        container.add_item(
+            ui.TextDisplay(
+                "All department and community rules are now handled by this bot.\n"
+                "Select a category below to view the rules."
+            )
+        )
         container.add_item(ui.Separator())
-
-        container.add_item(ui.TextDisplay(
-            'Click to select the category of rules you want to view — they are all important.\n'
-            'If you get **"This interaction failed"**, try again or message Saintless.'
-        ))
+        container.add_item(
+            ui.TextDisplay(
+                'Select the rules you want to read. If you get **"This interaction failed"**, '
+                "try again or message Saintless."
+            )
+        )
         container.add_item(ui.ActionRow(RuleSelect()))
 
         container.add_item(ui.TextDisplay("• If someone breaks rules, open a ticket in support."))
-        container.add_item(ui.TextDisplay("**Click the buttons below to see re-join info and punishment points.**"))
+        container.add_item(
+            ui.TextDisplay("**Use the buttons below to see re-join info and punishment points.**")
+        )
 
-        point_btn = ui.Button(label="Point Info", style=discord.ButtonStyle.secondary, custom_id="point_info")
-        punish_btn = ui.Button(label="Punishment Power", style=discord.ButtonStyle.secondary, custom_id="punishment_power")
-        support_btn = ui.Button(label="Support", style=discord.ButtonStyle.link, url="https://discord.gg/kCz3W4VT4")
+        point_btn = ui.Button(
+            label="Point Info",
+            style=discord.ButtonStyle.secondary,
+            custom_id="point_info",
+        )
+        punish_btn = ui.Button(
+            label="Punishment Power",
+            style=discord.ButtonStyle.secondary,
+            custom_id="punishment_power",
+        )
+        support_btn = ui.Button(
+            label="Support",
+            style=discord.ButtonStyle.link,
+            url="https://discord.gg/kCz3W4VT4",
+        )
 
         point_btn.callback = self.on_point_info
         punish_btn.callback = self.on_punishment
 
         container.add_item(ui.ActionRow(point_btn, punish_btn, support_btn))
-
         container.add_item(ui.Separator())
-        container.add_item(ui.TextDisplay(
-            "*To analyze the unexplained, safeguard the public, and treat those afflicted by "
-            "conditions beyond the boundaries of conventional medicine.*"
-        ))
-        container.add_item(ui.TextDisplay(
-            "**Failure to follow these rules will result in disciplinary action**, including warning, "
-            "suspension, demotion, or removal from Security depending on the severity of the violation."
-        ))
+
+        container.add_item(
+            ui.TextDisplay(
+                "*To analyze the unexplained, safeguard the public, and treat those afflicted by "
+                "conditions beyond the boundaries of conventional medicine.*"
+            )
+        )
+        container.add_item(
+            ui.TextDisplay(
+                "**Failure to follow these rules will result in disciplinary action**, including "
+                "warning, suspension, demotion, or removal depending on the severity of the violation."
+            )
+        )
         container.add_item(ui.TextDisplay("-# Made by Saintless"))
 
         self.add_item(container)
 
     async def on_point_info(self, interaction: discord.Interaction):
-        # Only the person who clicked sees this — ephemeral=True
-        await interaction.response.send_message(view=build_reply("Point Info", POINT_INFO), ephemeral=True)
+        await interaction.response.send_message(
+            view=build_reply("Point Info", POINT_INFO),
+            ephemeral=True,
+        )
 
     async def on_punishment(self, interaction: discord.Interaction):
-        # Only the person who clicked sees this — ephemeral=True
-        await interaction.response.send_message(view=build_reply("Punishment Power", PUNISHMENT_TABLE), ephemeral=True)
-
-
-# Usage in a command:
-# await ctx.send(view=RulesView())
+        await interaction.response.send_message(
+            view=build_reply("Punishment Power", PUNISHMENT_TABLE),
+            ephemeral=True,
+        )
