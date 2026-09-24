@@ -25,6 +25,7 @@ _runtime_error_count = 0
 _alert_sent = False
 
 intents = discord.Intents.default()
+intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
