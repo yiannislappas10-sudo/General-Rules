@@ -21,7 +21,7 @@ intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-@bot.tree.command(name="rules", description="Show the community, game, and economy rules.")
+@bot.tree.command(name="rules", description="Show the general, security, research, technical, and janitor rules.")
 async def rules(interaction: discord.Interaction):
     await interaction.response.send_message(view=RulesView())
 
