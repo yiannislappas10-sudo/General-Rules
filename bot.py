@@ -6,7 +6,14 @@ from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 
-from rules_view import RulesView
+from rules_view import (
+    GENERAL_RULES,
+    JANITOR_RULES,
+    RESEARCH_RULES,
+    SECURITY_RULES,
+    TECHNICAL_RULES,
+    build_reply,
+)
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -21,15 +28,43 @@ intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-@bot.tree.command(name="rules", description="Show the general, security, research, technical, and janitor rules.")
-async def rules(interaction: discord.Interaction):
-    await interaction.response.send_message(view=RulesView())
+@bot.tree.command(name="general", description="Show the general rules.")
+async def general(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        view=build_reply("General Rules", GENERAL_RULES)
+    )
+
+
+@bot.tree.command(name="sec", description="Show the security rules.")
+async def sec(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        view=build_reply("Security Rules", SECURITY_RULES)
+    )
+
+
+@bot.tree.command(name="research", description="Show the research rules.")
+async def research(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        view=build_reply("Research Rules", RESEARCH_RULES)
+    )
+
+
+@bot.tree.command(name="technical", description="Show the technical rules.")
+async def technical(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        view=build_reply("Technical Rules", TECHNICAL_RULES)
+    )
+
+
+@bot.tree.command(name="janitors", description="Show the janitor rules.")
+async def janitors(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        view=build_reply("Janitor Rules", JANITOR_RULES)
+    )
 
 
 @bot.event
 async def setup_hook():
-    # Reconnect callbacks for rules messages created before a bot restart.
-    bot.add_view(RulesView())
     if GUILD_ID:
         guild = discord.Object(id=int(GUILD_ID))
         bot.tree.copy_global_to(guild=guild)
@@ -42,7 +77,9 @@ async def report_runtime_error(error: Exception, context: str) -> None:
     """Log errors and alert the configured owner once after six runtime errors."""
     global _runtime_error_count, _alert_sent
     _runtime_error_count += 1
-    logger.exception("Runtime error in %s (error %d)", context, _runtime_error_count, exc_info=error)
+    logger.exception(
+        "Runtime error in %s (error %d)", context, _runtime_error_count, exc_info=error
+    )
 
     if _runtime_error_count <= 5 or _alert_sent:
         return
