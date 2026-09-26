@@ -107,7 +107,7 @@ async def on_app_command_completion(
     interaction: discord.Interaction, command: app_commands.Command
 ):
     await send_pride_event(interaction, f"command:{command.qualified_name}")
-    if command.qualified_name in {"general", "sec", "research", "technical", "janitors"}:
+    if command.qualified_name in {"general", "sec", "research", "technical", "janitors", "medical"}:
         await send_pride_event(interaction, "rules_view")
 
 
