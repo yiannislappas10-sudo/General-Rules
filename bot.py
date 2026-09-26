@@ -9,10 +9,8 @@ from dotenv import load_dotenv
 
 from rules_view import (
     GENERAL_RULES,
-    JANITOR_RULES,
-    RESEARCH_RULES,
-    SECURITY_RULES,
-    TECHNICAL_RULES,
+    build_department_view,
+    build_persistent_department_views,
     build_reply,
 )
 
@@ -66,34 +64,36 @@ async def general(interaction: discord.Interaction):
 
 @bot.tree.command(name="sec", description="Show the security rules.")
 async def sec(interaction: discord.Interaction):
-    await interaction.response.send_message(
-        view=build_reply("Security Rules", SECURITY_RULES)
-    )
+    await interaction.response.send_message(view=build_department_view("security"))
 
 
 @bot.tree.command(name="research", description="Show the research rules.")
 async def research(interaction: discord.Interaction):
-    await interaction.response.send_message(
-        view=build_reply("Research Rules", RESEARCH_RULES)
-    )
+    await interaction.response.send_message(view=build_department_view("research"))
 
 
 @bot.tree.command(name="technical", description="Show the technical rules.")
 async def technical(interaction: discord.Interaction):
-    await interaction.response.send_message(
-        view=build_reply("Technical Rules", TECHNICAL_RULES)
-    )
+    await interaction.response.send_message(view=build_department_view("technical"))
 
 
-@bot.tree.command(name="janitors", description="Show the janitor rules.")
+@bot.tree.command(name="janitors", description="Show the janitorial rules.")
 async def janitors(interaction: discord.Interaction):
-    await interaction.response.send_message(
-        view=build_reply("Janitor Rules", JANITOR_RULES)
-    )
+    await interaction.response.send_message(view=build_department_view("janitor"))
+
+
+@bot.tree.command(name="medical", description="Show the medical rules.")
+async def medical(interaction: discord.Interaction):
+    await interaction.response.send_message(view=build_department_view("medical"))
 
 
 @bot.event
 async def setup_hook():
+    # Re-register the department V2 views so existing rule panels remain
+    # interactive after a Railway restart.
+    for view in build_persistent_department_views():
+        bot.add_view(view)
+
     if GUILD_ID:
         guild = discord.Object(id=int(GUILD_ID))
         bot.tree.copy_global_to(guild=guild)
