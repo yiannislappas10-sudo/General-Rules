@@ -654,68 +654,8 @@ def build_rule_detail(rule: dict) -> ui.LayoutView:
 
 
 def build_department_view(dept_key: str) -> ui.LayoutView:
-    """Build the full Components V2 department panel with a rule selector."""
-    rules = RULESETS[dept_key]
-    title = TITLES[dept_key]
-    view = DepartmentRulesView(dept_key)
-
-    container = ui.Container(accent_color=_accent())
-    container.add_item(ui.TextDisplay(f"# {title}"))
-    container.add_item(
-        ui.TextDisplay(
-            f'And most important thing, you must follow [Discord\'s Terms of Service]({COMMUNITY_GUIDELINES_URL})'
-        )
-    )
-    container.add_item(
-        ui.ActionRow(
-            ui.Button(
-                label="Community Guidelines",
-                style=discord.ButtonStyle.link,
-                url=COMMUNITY_GUIDELINES_URL,
-            )
-        )
-    )
-    container.add_item(ui.Separator())
-    container.add_item(
-        ui.TextDisplay(
-            'Click **"Select The Rule"** to read the rules. They\'re important too.\n'
-            'If it gives error **"This interaction failed"** try again.'
-        )
-    )
-    container.add_item(ui.ActionRow(RuleSelect(dept_key, rules)))
-    container.add_item(
-        ui.TextDisplay(
-            "> • If you have a problem or a question, open a ticket in support."
-        )
-    )
-
-    point_button = ui.Button(
-        label="Point Info",
-        style=discord.ButtonStyle.secondary,
-        custom_id=f"wraith:{dept_key}:point_info",
-    )
-    punish_button = ui.Button(
-        label="Punishment Power",
-        style=discord.ButtonStyle.secondary,
-        custom_id=f"wraith:{dept_key}:punishment",
-    )
-    support_button = ui.Button(
-        label="Support",
-        style=discord.ButtonStyle.link,
-        url=SUPPORT_URL,
-    )
-    point_button.callback = view.on_point_info
-    punish_button.callback = view.on_punishment
-    container.add_item(ui.ActionRow(point_button, punish_button, support_button))
-
-    container.add_item(ui.TextDisplay("> • You may re-join only by *High Rank* approval\nYou can apply with an apology."))
-    container.add_item(ui.TextDisplay("> • Your warnings with points will be removed after a month.\nIf you get banned again, will be perm with no excuse."))
-    container.add_item(ui.Separator())
-    container.add_item(ui.TextDisplay(CLOSING_TEXT[dept_key]))
-    container.add_item(ui.TextDisplay("-# Made by Saintless"))
-
-    view.add_item(container)
-    return view
+    """Build the full Components V2 department panel with a persistent selector."""
+    return DepartmentRulesView(dept_key)
 
 
 class RuleSelect(ui.Select):
@@ -757,6 +697,74 @@ class DepartmentRulesView(ui.LayoutView):
     def __init__(self, dept_key: str):
         super().__init__(timeout=None)
         self.dept_key = dept_key
+        rules = RULESETS[dept_key]
+
+        container = ui.Container(accent_color=_accent())
+        container.add_item(ui.TextDisplay(f"# {TITLES[dept_key]}"))
+        container.add_item(
+            ui.TextDisplay(
+                f'And most important thing, you must follow [Discord\'s Terms of Service]({COMMUNITY_GUIDELINES_URL})'
+            )
+        )
+        container.add_item(
+            ui.ActionRow(
+                ui.Button(
+                    label="Community Guidelines",
+                    style=discord.ButtonStyle.link,
+                    url=COMMUNITY_GUIDELINES_URL,
+                )
+            )
+        )
+        container.add_item(ui.Separator())
+        container.add_item(
+            ui.TextDisplay(
+                'Click **"Select The Rule"** to read the rules. They\'re important too.\n'
+                'If it gives error **"This interaction failed"** try again.'
+            )
+        )
+        container.add_item(ui.ActionRow(RuleSelect(dept_key, rules)))
+        container.add_item(
+            ui.TextDisplay(
+                "> • If you have a problem or a question, open a ticket in support."
+            )
+        )
+
+        point_button = ui.Button(
+            label="Point Info",
+            style=discord.ButtonStyle.secondary,
+            custom_id=f"wraith:{dept_key}:point_info",
+        )
+        punish_button = ui.Button(
+            label="Punishment Power",
+            style=discord.ButtonStyle.secondary,
+            custom_id=f"wraith:{dept_key}:punishment",
+        )
+        support_button = ui.Button(
+            label="Support",
+            style=discord.ButtonStyle.link,
+            url=SUPPORT_URL,
+        )
+        point_button.callback = self.on_point_info
+        punish_button.callback = self.on_punishment
+        container.add_item(ui.ActionRow(point_button, punish_button, support_button))
+
+        container.add_item(
+            ui.TextDisplay(
+                "> • You may re-join only by *High Rank* approval\\n"
+                "You can apply with an apology."
+            )
+        )
+        container.add_item(
+            ui.TextDisplay(
+                "> • Your warnings with points will be removed after a month.\\n"
+                "If you get banned again, will be perm with no excuse."
+            )
+        )
+        container.add_item(ui.Separator())
+        container.add_item(ui.TextDisplay(CLOSING_TEXT[dept_key]))
+        container.add_item(ui.TextDisplay("-# Made by Saintless"))
+
+        self.add_item(container)
 
     async def on_point_info(self, interaction: discord.Interaction):
         await interaction.response.send_message(
